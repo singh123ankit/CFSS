@@ -22,13 +22,14 @@ void signUp()
 		tailUD->next = newUser;
 		tailUD = newUser;
 	}
+	addCfss(newUser->uId);
 	printf("\nYou have been registered successfully!");
 }
 
 int signIn()
 {
-	char uName[MAX_BUFF] = {'\0'};
-	char passwd[MAX_BUFF] = {'\0'};
+	char uName[MAX_BUFF] = {'\0',};
+	char passwd[MAX_BUFF] = {'\0',};
 	int uid = 0;
 
 	printf("\nEnter User Name: ");
@@ -137,13 +138,14 @@ int cfsScreen()
 char *searchUser(int uid)
 {
 	UD *temp = headUD;
-	char fName[1024];
+	char fName[MAX_BUFF];
 
 	while(temp != NULL)
 	{
 		if(temp->uId == uid)
 		{
 			strcpy(fName,temp->fName);
+			break;
 		}
 		temp = temp->next;
 	}

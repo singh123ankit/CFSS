@@ -18,11 +18,13 @@ extern CFSS *headCFSS;
 extern CFSS *tailCFSS;
 
 
-void addCfss(int uid);
+void addCfss(int);
 void loadCfss();
-int readCfsFile(FILE *fptr,CFSS *temp);
+int readCfsFile(FILE *,CFSS *);
 void writeCfss();
-int writeCfsFile(FILE *fptr,CFSS *temp);
-void updateCfss(int cfsNumber,int cfsActive,char *serviceType);
+int writeCfsFile(FILE *,CFSS *);
+void activateCfss(int,int,char *);
+void deactivateCfss(int);
+void makeCall(int);
 
 #endif

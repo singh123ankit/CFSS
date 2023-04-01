@@ -12,7 +12,7 @@ void getPDetails(UD *newUser)
 	char lName[MAX_BUFF] = {'\0',};
 	char passwd[MAX_BUFF] = {'\0',};
 	char uName[MAX_BUFF] = {'\0',};
-	int age = 0;
+	char gender = '\0';
 	long int pNumber = 0;
 
 
@@ -33,7 +33,7 @@ void getPDetails(UD *newUser)
 	scanf(" ");
 	fgets(uName,MAX_BUFF,stdin);
 	uName[strlen(uName)-1] = '\0';
-	printf("\nEnter Age: ");
+	printf("\nEnter Gender(M/F): ");
 	scanf("%d",&age);
 	printf("\nEnter Phone Number: ");
 	scanf("%ld",&pNumber);
@@ -46,7 +46,7 @@ void getPDetails(UD *newUser)
 	strcpy(newUser->lName,lName);
 	strcpy(newUser->uName,uName);
 	strcpy(newUser->passwd,passwd);
-	newUser->age = age;
+	newUser->gender = gender;
 	newUser->pNumber = pNumber;
 	newUser->next = NULL;
 }
@@ -79,7 +79,7 @@ void loadPDetails()
 			strcpy(newUser->passwd,temp.passwd);
 			strcpy(newUser->uName,temp.uName);
 			newUser->uId = temp.uId;
-			newUser->age = temp.age;
+			newUser->gender = temp.gender;
 			newUser->pNumber = temp.pNumber;
 			newUser->next = NULL;
 			headUD = newUser;
@@ -98,7 +98,7 @@ void loadPDetails()
 		strcpy(newUser->passwd,temp.passwd);
 		strcpy(newUser->uName,temp.uName);
 		newUser->uId = temp.uId;
-		newUser->age = temp.age;
+		newUser->gender = temp.gender;
 		newUser->pNumber = temp.pNumber;
 		newUser->next = NULL;
 		tailUD->next = newUser;

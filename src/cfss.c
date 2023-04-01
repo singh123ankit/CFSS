@@ -155,6 +155,7 @@ void deactivateCfss(int uId)
 				temp->cfsActive = 0;
 				temp->cfsNumber = 0;
 				memset(temp->serviceType,'\0',MAX_BUFF);
+				printf("\nCall Forwarding Service Deactivated Successfully!");
 				break;
 			}
 			else
@@ -170,6 +171,77 @@ void unregister(int uId)
 {
 	UD *userTemp = headUD;
 	CFSS *cfsTemp = headCFSS;
-	UD *userPrev = NULL;
-	CFSS *cfsTemp = NULL;
+	UD *userPrev = headUD;
+	CFSS *cfsPrev = headCFSS;
 
+	while(userTemp != NULL)
+	{
+		if(userTemp->uId == uId)
+		{
+			if(userTemp->uId == headUD->uId)
+			{
+				headUD = headUD->next;
+				break;
+			}
+			if(tailUD->uId == userTemp->uId)
+			{
+				tailUD = userPrev;
+				userPrev->next = userTemp->next;
+				break;
+			}
+			userPrev->next = userTemp->next;
+			userTemp->next = NULL;
+			break;
+		}
+		userPrev = userTemp;
+		userTemp = userTemp->next;
+	}
+
+	while(cfsTemp != NULL)
+	{
+		if(cfsTemp->uId == uId)
+		{
+			if(cfsTemp->uId == headCFSS->uId)
+			{
+				headCFSS = headCFSS->next;
+				break;
+			}
+			if(tailCFSS->uId == cfsTemp->uId)
+			{
+				tailCFSS = cfsPrev;
+				cfsPrev->next = cfsTemp->next;
+				break;
+			}
+			cfsPrev->next = cfsTemp->next;
+			cfsTemp->next = NULL;
+			break;
+		}
+		cfsPrev = cfsTemp;
+		cfsTemp = cfsTemp->next;
+	}
+	printf("\nYou have been unregistered successfully!");
+}
+
+void makeCall(int uId)
+{
+	CFSS *temp = headCFSS;
+
+	while(temp != NULL)
+	{
+		if(temp->uId == uId)
+		{
+			if(temp->cfsActive == 1)
+			{
+				printf("\nCall Forwarding is Active!");
+				printf("\nCall has been forwarded to %ld ",temp->cfsNumber);
+				break;
+			}
+			else
+			{
+				printf("\nNormal Call to the client");
+				break;
+			}
+		}
+		temp = temp->next;
+	}
+}

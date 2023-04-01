@@ -7,7 +7,7 @@ struct userDetails
 {
 	char fName[MAX_BUFF];
 	char lName[MAX_BUFF];
-	int age;
+	char gender;
 	long int pNumber;
 	char uName[MAX_BUFF];
 	int uId;

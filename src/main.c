@@ -1,4 +1,5 @@
 #include<common.h>
+#include<cfss.h>
 #include<user.h>
 #include<string.h>
 #include<stdlib.h>
@@ -7,29 +8,33 @@
 
 int main()
 {
-	//int choice = 0;
+	int choice = 0;
 	int flag = 1;
+	int ch = 1;
 	int uid = 0;
 	long int number = 0;
 	char uName[MAX_BUFF];
 
 	loadPDetails();
+	loadCfss();
 	while(1)
 	{
-		switch(initialScreen)
+		switch(initialScreen())
 		{
 			case 1:
 				signUp();
+				sleep(5);
 				break;
 			case 2:
 				uid = signIn();
+				sleep(5);
 				if(uid == -1)
 				{
 					continue;
 				}
 				else
 				{
-					//strcpy(uName,searchUser(uid));
+					strcpy(uName,searchUser(uid));
 					while(flag)
 					{
 						choice = mainScreen(uName);
@@ -43,14 +48,17 @@ int main()
 									choice = cfsScreen();
 									if(choice == 1)
 									{
+										activateCfss(uid,number,"Unconditional");
 										ch = 0;
 									}
 									else if(choice == 2)
 									{
+										activateCfss(uid,number,"No Reply");
 										ch = 0;
 									}
 									else if(choice == 3)
 									{
+										activateCfss(uid,number,"Busy");
 										ch = 0;
 									}
 									else
@@ -58,24 +66,30 @@ int main()
 										printf("\nEnter correct choice!");
 									}
 								}
-								flag = 0;
 								break;
 							case 2:
-								flag = 0;
-								//Deactivate CFS function.......
+								deactivateCfss(uid);
+								sleep(5);
+								break;
 							case 3:
-								flag = 0;
-								break;
-								//Unregister function........
-							case 4:
-								break;
-								flag = 0;
-								//Make a call function.......
-							case 5:
+								unregister(uid);
+								sleep(5);
 								uid = 0;
 								flag = 0;
 								break;
+							case 4:
+								makeCall(uid);
+								sleep(6);
+								break;
+							case 5:
+								uid = 0;
+								flag = 0;
+								printf("\nLogged Out Successfully!");
+								sleep(5);
+								break;
 							case 6:
+								writePDetails();
+								writeCfss();
 								exit(EXIT_SUCCESS);
 							default:
 								printf("\nInvalid Choice!Try Again");
@@ -84,6 +98,8 @@ int main()
 				}
 				break;
 			case 3:
+				writePDetails();
+				writeCfss();
 				exit("EXIT_SUCCESS");
 			default:
 				printf("\nInvalid Choice");
