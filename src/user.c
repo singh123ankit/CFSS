@@ -118,6 +118,7 @@ void writePDetails()
 {
 	UD *temp = headUD;
 	FILE *fptr = NULL;
+	int retVal = 0;
 	
 	fptr = fopen("../data/user.dat","w");
 	if(fptr == NULL)

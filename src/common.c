@@ -110,8 +110,8 @@ int mainScreen(char *fName)
 	printf("\n2. To Deactivate Call Forwarding Service");
 	printf("\n3. To Unregister");
 	printf("\n4. Make a call");
-	printf("\n3. Log Out");
-	printf("\n4. Exit Application");
+	printf("\n5. Log Out");
+	printf("\n6. Exit Application");
 	printf("\n");
 	printf("****************************************************************");
 	printf("\nEnter your choice: ");
@@ -133,3 +133,21 @@ int cfsScreen()
 	scanf("%d",&choice);
 	return choice;
 }
+
+char *searchUser(int uid)
+{
+	UD *temp = headUD;
+	char fName[1024];
+
+	while(temp != NULL)
+	{
+		if(temp->uId == uid)
+		{
+			strcpy(fName,temp->fName);
+		}
+		temp = temp->next;
+	}
+	return fName;
+}
+
+
