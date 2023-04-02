@@ -14,9 +14,15 @@ int main()
 	int uid = 0;
 	long int number = 0;
 	char uName[MAX_BUFF];
+	//UD *temp = NULL;
 
 	loadPDetails();
-	printf("\n\n%u\n\n",headUD);
+	//temp = headUD;
+	/*while(temp!=NULL)
+	{
+		printf("\n%s\n",temp->uName);
+		temp = temp->next;
+	}*/
 	loadCfss();
 	while(1)
 	{
@@ -24,11 +30,11 @@ int main()
 		{
 			case 1:
 				signUp();
-				sleep(5);
+				sleep(4);
 				break;
 			case 2:
 				uid = signIn();
-				sleep(5);
+				sleep(4);
 				if(uid == -1)
 				{
 					continue;
@@ -70,23 +76,23 @@ int main()
 								break;
 							case 2:
 								deactivateCfss(uid);
-								sleep(5);
+								sleep(4);
 								break;
 							case 3:
 								unregister(uid);
-								sleep(5);
+								sleep(4);
 								uid = 0;
 								flag = 0;
 								break;
 							case 4:
 								makeCall(uid);
-								sleep(6);
+								sleep(4);
 								break;
 							case 5:
 								uid = 0;
 								flag = 0;
 								printf("\nLogged Out Successfully!");
-								sleep(5);
+								sleep(4);
 								break;
 							case 6:
 								writePDetails();

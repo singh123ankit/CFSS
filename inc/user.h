@@ -20,7 +20,7 @@ typedef struct userDetails
 extern UD *headUD ;
 extern UD *tailUD ;
 
-void getPDetails(UD *);
+UD *getPDetails();
 void loadPDetails();
 int readUserFile(FILE *,UD *);
 void writePDetails();

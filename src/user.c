@@ -6,8 +6,9 @@
 UD *headUD = NULL;
 UD *tailUD = NULL;
 
-void getPDetails(UD *newUser)
+UD *getPDetails()
 {
+	UD *newUser = NULL;
 	char fName[MAX_BUFF] = {'\0',};
 	char lName[MAX_BUFF] = {'\0',};
 	char passwd[MAX_BUFF] = {'\0',};
@@ -51,6 +52,7 @@ void getPDetails(UD *newUser)
 	newUser->gender = gender;
 	newUser->pNumber = pNumber;
 	newUser->next = NULL;
+	return newUser;
 }
 
 void loadPDetails()
@@ -60,7 +62,7 @@ void loadPDetails()
 	UD *newUser = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home1/trainee59/CFSS/data/user.dat","r");
+	fptr = fopen("/home/ankit/PROJECT/CFSS/data/user.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -122,7 +124,7 @@ void writePDetails()
 	FILE *fptr = NULL;
 	int retVal = 0;
 	
-	fptr = fopen("/home1/trainee59/CFSS/data/user.dat","w");
+	fptr = fopen("/home/ankit/PROJECT/CFSS/data/user.dat","w");
 	if(fptr == NULL)
 	{
 		perror("fopen");

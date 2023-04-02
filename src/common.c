@@ -11,7 +11,7 @@ void signUp()
 {
 	UD *newUser = NULL;
 
-	getPDetails(newUser);
+	newUser = getPDetails();
 	if(headUD == NULL)
 	{
 		newUser->uId = 1;
@@ -24,8 +24,8 @@ void signUp()
 		tailUD->next = newUser;
 		tailUD = newUser;
 	}
-//	addCfss(newUser->uId);
-	printf("\nYou have been registered successfully!");
+	addCfss(newUser->uId);
+	printf("\nYou have been registered successfully!\n\n");
 }
 
 int signIn()
@@ -35,6 +35,7 @@ int signIn()
 	int uid = 0;
 
 	printf("\nEnter User Name: ");
+	scanf(" ");
 	fgets(uName,MAX_BUFF,stdin);
 	uName[strlen(uName)-1] = '\0';
 	printf("\nEnter Password: ");
@@ -44,7 +45,7 @@ int signIn()
 	uid = checkCred(uName,passwd);
 	if(uid > 0)
 	{
-		printf("\nLogged In Successfully!");
+		printf("\nLogged In Successfully!\n\n");
 		return uid;
 	}
 	printf("\nEither User Name or Password is Incorrect!Try Again.");
@@ -87,7 +88,7 @@ int initialScreen()
 {
 	int choice = 0;
 
-//	system("clear");
+	system("clear");
 	printf("*******************Welcome To Call Forwarding System Simulator*********************");
 	printf("\n\n");
 	printf("Press,");
