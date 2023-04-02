@@ -4,16 +4,15 @@
 #include<stdio.h>
 #define MAX_BUFF 1024
 
-struct callForwarding
+typedef struct callForwarding
 {
 	int uId;
 	long int cfsNumber;
 	int cfsActive;
 	char serviceType[MAX_BUFF];
 	struct callForwarding *next;
-};
+}CFSS;
 
-typedef struct CallForwarding CFSS;
 
 extern CFSS *headCFSS;
 extern CFSS *tailCFSS;

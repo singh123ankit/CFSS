@@ -16,6 +16,7 @@ int main()
 	char uName[MAX_BUFF];
 
 	loadPDetails();
+	printf("\n\n%u\n\n",headUD);
 	loadCfss();
 	while(1)
 	{

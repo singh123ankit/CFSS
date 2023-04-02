@@ -19,7 +19,7 @@ void addCfss(int uid)
 	newCfs->uId = uid;
 	newCfs->cfsActive = 0;
 	newCfs->cfsNumber = 0;
-	memset(newCfs->cfsNumber,'\0',MAX_BUFF);
+	memset(newCfs->serviceType,'\0',MAX_BUFF);
 	newCfs->next = NULL;
 	if(headCFSS == NULL)
 	{
@@ -40,7 +40,7 @@ void loadCfss()
 	CFSS *newCfs = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home1/trainee59/CFSS/data/cfss.dat","r");
+	fptr = fopen("/home1/trainee59/CFSS/data/cfs.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -85,7 +85,7 @@ void loadCfss()
 
 int readCfsFile(FILE *fptr,CFSS *temp)
 {
-	int ret = fread(temp,sizeof(CFSS),1,fptr);
+	int ret = fread(temp,sizeof(struct callForwarding),1,fptr);
 
 	return ret;
 }
@@ -96,10 +96,10 @@ void writeCfss()
 	FILE *fptr = NULL;
 	int retVal = 0;
 
-	fptr = fopen("/home1/trainee59/CFSS/data/cfss.dat","w");
+	fptr = fopen("/home1/trainee59/CFSS/data/cfs.dat","w");
 	if(fptr == NULL)
 	{
-		perror("fopen");
+		perror("fopen()");
 		exit(EXIT_FAILURE);
 	}
 	while(temp != NULL)
@@ -107,7 +107,7 @@ void writeCfss()
 		retVal = writeCfsFile(fptr,temp);
 		if(retVal == 0)
 		{
-			perror(fwrite);
+			perror("fwrite()");
 			exit(EXIT_FAILURE);
 		}
 		temp = temp->next;

@@ -23,6 +23,7 @@ void getPDetails(UD *newUser)
 		exit(EXIT_FAILURE);
 	}
 	printf("\nEnter First Name: ");
+	scanf(" ");
 	fgets(fName,MAX_BUFF,stdin);
 	fName[strlen(fName)-1] = '\0';
 	printf("\nEnter Last Name: ");

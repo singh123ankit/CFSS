@@ -24,7 +24,7 @@ void signUp()
 		tailUD->next = newUser;
 		tailUD = newUser;
 	}
-	addCfss(newUser->uId);
+//	addCfss(newUser->uId);
 	printf("\nYou have been registered successfully!");
 }
 
@@ -87,7 +87,7 @@ int initialScreen()
 {
 	int choice = 0;
 
-	system("clear");
+//	system("clear");
 	printf("*******************Welcome To Call Forwarding System Simulator*********************");
 	printf("\n\n");
 	printf("Press,");

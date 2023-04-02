@@ -4,7 +4,7 @@
 #include<stdio.h>
 #define MAX_BUFF 1024
 
-struct userDetails
+typedef struct userDetails
 {
 	char fName[MAX_BUFF];
 	char lName[MAX_BUFF];
@@ -14,9 +14,8 @@ struct userDetails
 	int uId;
 	char passwd[MAX_BUFF];
 	struct userDetails *next;
-};
+}UD;
 
-typedef struct userDetails UD;
 
 extern UD *headUD ;
 extern UD *tailUD ;
