@@ -34,7 +34,7 @@ int main()
 				}
 				else
 				{
-					strcpy(uName,searchUser(uid));
+					searchUser(uid,uName);
 					while(flag)
 					{
 						choice = mainScreen(uName);
@@ -90,7 +90,7 @@ int main()
 							case 6:
 								writePDetails();
 								writeCfss();
-								exit(EXIT_SUCCESS);
+								exit(0);
 							default:
 								printf("\nInvalid Choice!Try Again");
 						}
@@ -100,9 +100,9 @@ int main()
 			case 3:
 				writePDetails();
 				writeCfss();
-				exit("EXIT_SUCCESS");
+				exit(0);
 			default:
-				printf("\nInvalid Choice");
+				printf("\nInvalid Choice!");
 		}
 	}
 	return 0;

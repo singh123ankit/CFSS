@@ -34,7 +34,8 @@ void getPDetails(UD *newUser)
 	fgets(uName,MAX_BUFF,stdin);
 	uName[strlen(uName)-1] = '\0';
 	printf("\nEnter Gender(M/F): ");
-	scanf("%d",&age);
+	scanf(" ");
+	scanf("%c",&gender);
 	printf("\nEnter Phone Number: ");
 	scanf("%ld",&pNumber);
 	printf("\nEnter Password: ");
@@ -58,7 +59,7 @@ void loadPDetails()
 	UD *newUser = NULL;
 	int flag = 0;
 
-	fptr = fopen("../data/user.dat","r");
+	fptr = fopen("/home1/trainee59/CFSS/data/user.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -120,7 +121,7 @@ void writePDetails()
 	FILE *fptr = NULL;
 	int retVal = 0;
 	
-	fptr = fopen("../data/user.dat","w");
+	fptr = fopen("/home1/trainee59/CFSS/data/user.dat","w");
 	if(fptr == NULL)
 	{
 		perror("fopen");

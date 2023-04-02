@@ -1,6 +1,7 @@
 #ifndef USER_H
 #define USER_H
 
+#include<stdio.h>
 #define MAX_BUFF 1024
 
 struct userDetails

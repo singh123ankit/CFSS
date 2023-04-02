@@ -1,7 +1,9 @@
 #include<common.h>
 #include<user.h>
+#include<cfss.h>
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 #include<unistd.h>
 
 
@@ -42,10 +44,10 @@ int signIn()
 	uid = checkCred(uName,passwd);
 	if(uid > 0)
 	{
-		printf(\nLogged In Successfully!);
+		printf("\nLogged In Successfully!");
 		return uid;
 	}
-	printf("\nEither User Name or Password is Incorrect!Try Again.")
+	printf("\nEither User Name or Password is Incorrect!Try Again.");
 	return -1;
 }
 
@@ -129,16 +131,15 @@ int cfsScreen()
 	printf("\n1. Unconditional");
 	printf("\n2. No Reply");
 	printf("\n3. Busy");
-	printf(\n\n);
+	printf("\n\n");
 	printf("Enter your choice: ");
 	scanf("%d",&choice);
 	return choice;
 }
 
-char *searchUser(int uid)
+void  searchUser(int uid,char *fName)
 {
 	UD *temp = headUD;
-	char fName[MAX_BUFF];
 
 	while(temp != NULL)
 	{
@@ -149,7 +150,6 @@ char *searchUser(int uid)
 		}
 		temp = temp->next;
 	}
-	return fName;
 }
 
 

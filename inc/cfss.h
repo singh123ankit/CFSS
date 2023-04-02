@@ -1,16 +1,17 @@
 #ifndef CFSS_H
 #define CFSS_H
 
+#include<stdio.h>
 #define MAX_BUFF 1024
 
 struct callForwarding
 {
-	int uId = 0;
-	long int cfsNumber = 0;
-	int cfsActive = 0;
-	char serviceType[MAX_BUFF] = {'\0'};
+	int uId;
+	long int cfsNumber;
+	int cfsActive;
+	char serviceType[MAX_BUFF];
 	struct callForwarding *next;
-}CFSS;
+};
 
 typedef struct CallForwarding CFSS;
 
@@ -25,6 +26,7 @@ void writeCfss();
 int writeCfsFile(FILE *,CFSS *);
 void activateCfss(int,int,char *);
 void deactivateCfss(int);
+void unregister(int);
 void makeCall(int);
 
 #endif

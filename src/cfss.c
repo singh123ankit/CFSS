@@ -17,6 +17,9 @@ void addCfss(int uid)
 		exit(EXIT_SUCCESS);
 	}
 	newCfs->uId = uid;
+	newCfs->cfsActive = 0;
+	newCfs->cfsNumber = 0;
+	memset(newCfs->cfsNumber,'\0',MAX_BUFF);
 	newCfs->next = NULL;
 	if(headCFSS == NULL)
 	{
@@ -37,7 +40,7 @@ void loadCfss()
 	CFSS *newCfs = NULL;
 	int flag = 0;
 
-	fptr = fopen("../data/cfs.dat","r");
+	fptr = fopen("/home1/trainee59/CFSS/data/cfss.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -93,7 +96,7 @@ void writeCfss()
 	FILE *fptr = NULL;
 	int retVal = 0;
 
-	fptr = fopen("../data/cfs.dat","w");
+	fptr = fopen("/home1/trainee59/CFSS/data/cfss.dat","w");
 	if(fptr == NULL)
 	{
 		perror("fopen");
@@ -101,10 +104,10 @@ void writeCfss()
 	}
 	while(temp != NULL)
 	{
-		retVal = writeCfsFile(FILE *fptr,CFSS *temp);
+		retVal = writeCfsFile(fptr,temp);
 		if(retVal == 0)
 		{
-			perror(write);
+			perror(fwrite);
 			exit(EXIT_FAILURE);
 		}
 		temp = temp->next;
@@ -134,7 +137,7 @@ void activateCfss(int uId,int cfsNumber,char *serviceType)
 		{
 			temp->cfsNumber = cfsNumber;
 			temp->cfsActive = 1;
-			strcpy(temp->serviceType,serviceType)
+			strcpy(temp->serviceType,serviceType);
 			printf("\nCall forwarding Service Activated successfully!");
 			break;
 		}
@@ -181,16 +184,19 @@ void unregister(int uId)
 			if(userTemp->uId == headUD->uId)
 			{
 				headUD = headUD->next;
+				free(userTemp);
 				break;
 			}
 			if(tailUD->uId == userTemp->uId)
 			{
 				tailUD = userPrev;
 				userPrev->next = userTemp->next;
+				free(userTemp);
 				break;
 			}
 			userPrev->next = userTemp->next;
 			userTemp->next = NULL;
+			free(userTemp);
 			break;
 		}
 		userPrev = userTemp;
@@ -204,16 +210,19 @@ void unregister(int uId)
 			if(cfsTemp->uId == headCFSS->uId)
 			{
 				headCFSS = headCFSS->next;
+				free(cfsTemp);
 				break;
 			}
 			if(tailCFSS->uId == cfsTemp->uId)
 			{
 				tailCFSS = cfsPrev;
 				cfsPrev->next = cfsTemp->next;
+				free(cfsTemp);
 				break;
 			}
 			cfsPrev->next = cfsTemp->next;
 			cfsTemp->next = NULL;
+			free(cfsTemp);
 			break;
 		}
 		cfsPrev = cfsTemp;
