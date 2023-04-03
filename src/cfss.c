@@ -136,11 +136,11 @@ void activateCfss(int uId,int cfsNumber,char *serviceType)
 	{
 		if(temp->uId == uId)
 		{
-			temp->cfsNumber = cfsNumber;
-			temp->cfsActive = 1;
-			strcpy(temp->serviceType,serviceType);
-			printf("\nCall forwarding Service Activated successfully!\n\n");
-			break;
+				temp->cfsNumber = cfsNumber;
+				temp->cfsActive = 1;
+				strcpy(temp->serviceType,serviceType);
+				printf("\nCall forwarding Service Activated successfully!\n\n");
+				break;
 		}
 		temp = temp->next;
 	}
@@ -149,7 +149,7 @@ void activateCfss(int uId,int cfsNumber,char *serviceType)
 void deactivateCfss(int uId)
 {
 	CFSS *temp = headCFSS;
-
+	
 	while(temp != NULL)
 	{
 		if(temp->uId == uId)
@@ -158,7 +158,7 @@ void deactivateCfss(int uId)
 			{
 				temp->cfsActive = 0;
 				temp->cfsNumber = 0;
-				memset(temp->serviceType,'\0',MAX_BUFF);
+				//memset(temp->serviceType,'\0',MAX_BUFF);
 				printf("\nCall Forwarding Service Deactivated Successfully!\n\n");
 				break;
 			}
@@ -168,6 +168,7 @@ void deactivateCfss(int uId)
 				break;
 			}
 		}
+		temp=temp->next;
 	}
 }
 
