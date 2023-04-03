@@ -9,7 +9,7 @@
 int main()
 {
 	int choice = 0;
-	//int flag = 1;
+	int flag = 1;
 	int ch = 1;
 	int uid = 0;
 	long int number = 0;
@@ -35,14 +35,15 @@ int main()
 				else
 				{
 					searchUser(uid,uName);
-					//while(flag)
-					//{
+					while(flag)
+					{
 						choice = mainScreen(uName);
 						switch(choice)
 						{
 							case 1:
 								printf("\nEnter Call Forwarding Number: ");
 								scanf("%ld",&number);	
+								ch=1;
 								while(ch)
 								{
 									choice = cfsScreen();
@@ -77,7 +78,7 @@ int main()
 								unregister(uid);
 								sleep(2);
 								uid = 0;
-								//flag = 0;
+								flag = 0;
 								break;
 							case 4:
 								makeCall(uid);
@@ -85,7 +86,7 @@ int main()
 								break;
 							case 5:
 								uid = 0;
-								//flag = 0;
+								flag = 0;
 								printf("\nLogged Out Successfully!\n\n");
 								sleep(2);
 								break;
@@ -96,7 +97,7 @@ int main()
 							default:
 								printf("\nInvalid Choice!Try Again\n\n");
 						}
-					//}
+					}
 				}
 				break;
 			case 3:
