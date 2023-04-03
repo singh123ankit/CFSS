@@ -48,7 +48,7 @@ int signIn()
 		printf("\nLogged In Successfully!\n\n");
 		return uid;
 	}
-	printf("\nEither User Name or Password is Incorrect!Try Again.");
+	printf("\nEither User Name or Password is Incorrect!Try Again.\n\n");
 	return -1;
 }
 

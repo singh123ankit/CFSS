@@ -62,7 +62,7 @@ void loadPDetails()
 	UD *newUser = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home/ankit/PROJECT/CFSS/data/user.dat","r");
+	fptr = fopen("/home2/trainee63/CFSS_GROUP1/CFSS/data/user.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -124,7 +124,7 @@ void writePDetails()
 	FILE *fptr = NULL;
 	int retVal = 0;
 	
-	fptr = fopen("/home/ankit/PROJECT/CFSS/data/user.dat","w");
+	fptr = fopen("/home2/trainee63/CFSS_GROUP1/CFSS/data/user.dat","r+");
 	if(fptr == NULL)
 	{
 		perror("fopen");
@@ -149,8 +149,10 @@ int writeUserFile(FILE *fptr,UD *temp)
 	{
 		return 0;
 	}
+
+	if(ftell(fptr)!=0)
 	fseek(fptr,0,SEEK_END);
-	temp->next = NULL;
+	
 	int ret = fwrite(temp, sizeof(UD),1,fptr);
 	return ret;
 }

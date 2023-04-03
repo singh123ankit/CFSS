@@ -40,7 +40,7 @@ void loadCfss()
 	CFSS *newCfs = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home/ankit/PROJECT/CFSS/data/cfs.dat","r");
+	fptr = fopen("/home2/trainee63/CFSS_GROUP1/CFSS/data/cfs.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -96,7 +96,7 @@ void writeCfss()
 	FILE *fptr = NULL;
 	int retVal = 0;
 
-	fptr = fopen("/home/ankit/PROJECT/CFSS/data/cfs.dat","w");
+	fptr = fopen("/home2/trainee63/CFSS_GROUP1/CFSS/data/cfs.dat","w");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -121,8 +121,9 @@ int writeCfsFile(FILE *fptr,CFSS *temp)
 	{
 		return 0;
 	}
+	if(ftell(fptr)!=0)
 	fseek(fptr,0,SEEK_END);
-	temp->next = NULL;
+//	temp->next = NULL;
 	int ret = fwrite(temp,sizeof(CFSS),1,fptr);
 	return ret;
 }
@@ -138,7 +139,7 @@ void activateCfss(int uId,int cfsNumber,char *serviceType)
 			temp->cfsNumber = cfsNumber;
 			temp->cfsActive = 1;
 			strcpy(temp->serviceType,serviceType);
-			printf("\nCall forwarding Service Activated successfully!");
+			printf("\nCall forwarding Service Activated successfully!\n\n");
 			break;
 		}
 		temp = temp->next;
@@ -158,12 +159,12 @@ void deactivateCfss(int uId)
 				temp->cfsActive = 0;
 				temp->cfsNumber = 0;
 				memset(temp->serviceType,'\0',MAX_BUFF);
-				printf("\nCall Forwarding Service Deactivated Successfully!");
+				printf("\nCall Forwarding Service Deactivated Successfully!\n\n");
 				break;
 			}
 			else
 			{
-				printf("\nYou don't have any activated service!");
+				printf("\nYou don't have any activated service!\n\n");
 				break;
 			}
 		}
@@ -228,7 +229,7 @@ void unregister(int uId)
 		cfsPrev = cfsTemp;
 		cfsTemp = cfsTemp->next;
 	}
-	printf("\nYou have been unregistered successfully!");
+	printf("\nYou have been unregistered successfully!\n\n");
 }
 
 void makeCall(int uId)
@@ -241,13 +242,13 @@ void makeCall(int uId)
 		{
 			if(temp->cfsActive == 1)
 			{
-				printf("\nCall Forwarding is Active!");
-				printf("\nCall has been forwarded to %ld ",temp->cfsNumber);
+				printf("\nCall Forwarding is Active!\n\n");
+				printf("\nCall has been forwarded to %ld\n\n ",temp->cfsNumber);
 				break;
 			}
 			else
 			{
-				printf("\nNormal Call to the client");
+				printf("\nNormal Call to the client\n\n");
 				break;
 			}
 		}
