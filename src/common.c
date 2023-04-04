@@ -1,3 +1,24 @@
+/****************************************************************************************************
+ * FILE NAME    : common.c
+ *
+ * DESCRIPTION  : This file contails function definition required to perform call forwarding services
+ *                
+ *
+ * Revision History:
+ *
+ * DATE         NAME                REFERENCE          REASON
+ ********************************************************************************************************
+ * 04-04-2023    GROUP 01                New           Changes Committed
+ *********************************************************************************************************
+ * Copyright 2023, Altran Group All Rights Reserved
+ *
+ *******************************************************************************************************/
+
+
+/***************************************************************************
+*                           HEADER FILES
+*****************************************************************************/
+
 #include<common.h>
 #include<user.h>
 #include<cfss.h>
@@ -6,6 +27,15 @@
 #include<stdlib.h>
 #include<unistd.h>
 
+
+/*******************************************************************
+ **  FUNCTION_NAME  :   signUp
+ **
+ **  DESCRIPTION    :   This function takes user details and
+                        store it in the database
+ **
+ **  RETURN_TYPE    :   returns success or failure
+ ********************************************************************/
 
 void signUp()
 {
@@ -27,6 +57,17 @@ void signUp()
 	addCfss(newUser->uId);
 	printf("\nYou have been registered successfully!\n\n");
 }
+
+/**********************************************************************
+ **  FUNCTION_NAME  :   signIn
+ **
+ **  DESCRIPTION    :   This function takes user name and password
+ 			and if credentials match, the user logs in 
+			to the system.
+                        
+ **
+ **  RETURN_TYPE    :   returns success or failure
+ ***********************************************************************/
 
 int signIn()
 {
@@ -51,6 +92,16 @@ int signIn()
 	printf("\nEither User Name or Password is Incorrect!Try Again.\n\n");
 	return -1;
 }
+
+/*******************************************************************
+ **  FUNCTION_NAME  :   checkCred
+ **
+ **  DESCRIPTION    :   This function checks whether user name and
+ 			password match or not.
+                        
+ **
+ **  RETURN_TYPE    :   returns success or failure
+ ********************************************************************/
 
 int checkCred(char *uName,char *passwd)
 {
@@ -84,6 +135,16 @@ int checkCred(char *uName,char *passwd)
 	return 0;
 }
 
+/*******************************************************************
+ **  FUNCTION_NAME  :   initialScreen()
+ **
+ **  DESCRIPTION    :   This function is used to display the
+ 			initial login screen.
+ **
+ **  RETURN_TYPE    :   returns choice
+ ********************************************************************/
+
+
 int initialScreen()
 {
 	int choice = 0;
@@ -102,12 +163,23 @@ int initialScreen()
 	return choice;
 }
 
+
+/***********************************************************************
+ **  FUNCTION_NAME  :   mainScreen
+ **
+ **  DESCRIPTION    :   This function takes the first name of
+ 			the user, and also displays the next menu 
+			after the initial screen.
+ **
+ **  RETURN_TYPE    :   returns choice
+ ************************************************************************/
+
 int mainScreen(char *fName)
 {
 	int choice = 0;
 
 	system("clear");
-	printf("***********************Welcome\t\t%s****************************",fName);
+	printf("***********************Welcome\t%s****************************",fName);
 	printf("\n\n");
 	printf("Press,");
 	printf("\n1. To Activate Call Forwarding Service");
@@ -123,6 +195,15 @@ int mainScreen(char *fName)
 	return choice;
 }
 
+/***********************************************************************
+ **  FUNCTION_NAME  :   cfsScreen
+ **
+ **  DESCRIPTION    :   This function allows the user to choose 
+ **			the type of call forwarding service he wants.
+
+ **  RETURN_TYPE    :   returns choice
+ ************************************************************************/
+
 int cfsScreen()
 {
 	int choice = 0;
@@ -137,6 +218,14 @@ int cfsScreen()
 	scanf("%d",&choice);
 	return choice;
 }
+/*******************************************************************
+ **  FUNCTION_NAME  :   searchUser
+ **
+ **  DESCRIPTION    :   This function searches the first name 
+ 			based on uid, that it takes as input.
+ **
+ **  RETURN_TYPE    :   returns void
+ ********************************************************************/
 
 void  searchUser(int uid,char *fName)
 {

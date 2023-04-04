@@ -1,3 +1,14 @@
+/****************************************************************************************************
+ * FILE NAME    : user.c
+ *
+ * DESCRIPTION  : This file contains function to perform user call forwarding operation
+ *
+ *******************************************************************************************************/
+
+/*******************************************************************************************************
+*                           HEADER FILES
+*********************************************************************************************************/
+
 #include<user.h>
 #include<stdlib.h>
 #include<stdio.h>
@@ -6,6 +17,15 @@
 UD *headUD = NULL;
 UD *tailUD = NULL;
 
+
+/*******************************************************************
+ * FUNCTION NAME: getPDetails()
+ *
+ * DESCRIPTION: This function is used get user details, and 
+ * 		stores in the linked list.	
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
 UD *getPDetails()
 {
 	UD *newUser = NULL;
@@ -54,7 +74,14 @@ UD *getPDetails()
 	newUser->next = NULL;
 	return newUser;
 }
-
+/*******************************************************************
+ * FUNCTION NAME: loadPDetails()
+ *
+ * DESCRIPTION: This function is used to load data from user 
+ * 		database and puts in the linked list.
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
 void loadPDetails()
 {
 	FILE *fptr = NULL;
@@ -111,12 +138,29 @@ void loadPDetails()
 	fclose(fptr);
 }
 
+
+/*******************************************************************
+ * FUNCTION NAME: readUserFile()
+ *
+ * DESCRIPTION: This function is used to read user data.
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
+
 int readUserFile(FILE *fptr, UD *temp)
 {
 	int ret = fread(temp, sizeof(UD),1,fptr);
 
 	return ret;
 }
+/*******************************************************************
+ * FUNCTION NAME: writePDetails()
+ *
+ * DESCRIPTION: This function is used to write user details to user 
+ * 		database.
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
 
 void writePDetails()
 {
@@ -142,6 +186,15 @@ void writePDetails()
 	}
 	fclose(fptr);
 }
+
+/*******************************************************************
+ * FUNCTION NAME: writeUserDetails()
+ *
+ * DESCRIPTION: This function is used to write data from the 
+ * 		linked list and stores them to the file.
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
 
 int writeUserFile(FILE *fptr,UD *temp)
 {

@@ -1,3 +1,16 @@
+
+
+/****************************************************************************************************
+ * FILE NAME    : cfss.c
+ *
+ * DESCRIPTION  : This file contains function to perform user call forwarding operation
+ *
+ *******************************************************************************************************/
+
+/*******************************************************************************************************
+*                           HEADER FILES
+*********************************************************************************************************/
+
 #include<cfss.h>
 #include<user.h>
 #include<stdio.h>
@@ -6,6 +19,15 @@
 
 CFSS *headCFSS = NULL;
 CFSS *tailCFSS = NULL;
+
+/*******************************************************************
+ * FUNCTION NAME: addCfss()
+ *
+ * DESCRIPTION: This function is used to add the user to linked list
+ 		after signing in.
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
 
 void addCfss(int uid)
 {
@@ -32,6 +54,15 @@ void addCfss(int uid)
 		tailCFSS = newCfs;
 	}
 }
+
+/*******************************************************************
+ * FUNCTION NAME: loadCfss()
+ *
+ * DESCRIPTION: This function is used to load user details from
+ * 		cfs database, and adds them to the linked list.
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
 
 void loadCfss()
 {
@@ -83,9 +114,17 @@ void loadCfss()
 	fclose(fptr);
 }
 
+/*******************************************************************
+ * FUNCTION NAME: readCfsFile()
+ *
+ * DESCRIPTION: This function is used to read the cfs.dat file.
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
+
 int readCfsFile(FILE *fptr,CFSS *temp)
 {
-	int ret = fread(temp,sizeof(struct callForwarding),1,fptr);
+	int ret = fread(temp,sizeof(struct callForwarding),1,fptr);/*returns 1 if fread() fetches the object from the file */
 
 	return ret;
 }
@@ -123,7 +162,6 @@ int writeCfsFile(FILE *fptr,CFSS *temp)
 	}
 	if(ftell(fptr)!=0)
 	fseek(fptr,0,SEEK_END);
-//	temp->next = NULL;
 	int ret = fwrite(temp,sizeof(CFSS),1,fptr);
 	return ret;
 }
