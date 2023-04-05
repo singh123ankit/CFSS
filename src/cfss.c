@@ -42,7 +42,7 @@ void addCfss(int uid)
 	}
 	newCfs->uId = uid;
 	newCfs->cfsActive = 0;
-	newCfs->cfsNumber = 0;
+	bzero(newCfs->cfsNumber ,MAX_BUFF);/*bzero cleares the buffer */
 	memset(newCfs->serviceType,'\0',MAX_BUFF);
 	newCfs->next = NULL;
 	if(headCFSS == NULL)
@@ -73,7 +73,7 @@ void loadCfss()
 	CFSS *newCfs = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home1/trainee59/CFSS/data/cfs.dat","r");
+	fptr = fopen("/home2/trainee63/GROUP1/CFSS/data/cfs.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -90,7 +90,7 @@ void loadCfss()
 				exit(EXIT_FAILURE);
 			}
 			newCfs->uId = temp.uId;
-			newCfs->cfsNumber = temp.cfsNumber;
+			strcpy(newCfs->cfsNumber ,  temp.cfsNumber);
 			newCfs->cfsActive = temp.cfsActive;
 			strcpy(newCfs->serviceType,temp.serviceType);
 			newCfs->next = NULL;
@@ -106,7 +106,7 @@ void loadCfss()
 			exit(EXIT_FAILURE);
 		}
 		newCfs->uId = temp.uId;
-		newCfs->cfsNumber = temp.cfsNumber;
+		strcpy(newCfs->cfsNumber , temp.cfsNumber);
 		newCfs->cfsActive = temp.cfsActive;
 		strcpy(newCfs->serviceType,temp.serviceType);
 		newCfs->next = NULL;
@@ -137,7 +137,7 @@ void writeCfss()
 	FILE *fptr = NULL;
 	int retVal = 0;
 
-	fptr = fopen("/home1/trainee59/CFSS/data/cfs.dat","w");
+	fptr = fopen("/home2/trainee63/GROUP1/CFSS/data/cfs.dat","w");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -168,7 +168,7 @@ int writeCfsFile(FILE *fptr,CFSS *temp)
 	return ret;
 }
 
-void activateCfss(int uId,int cfsNumber,char *serviceType)
+void activateCfss(int uId,char *cfsNumber,char *serviceType)
 {
 	CFSS *temp = headCFSS;
 
@@ -176,7 +176,7 @@ void activateCfss(int uId,int cfsNumber,char *serviceType)
 	{
 		if(temp->uId == uId)
 		{
-				temp->cfsNumber = cfsNumber;
+				strcpy(temp->cfsNumber , cfsNumber);
 				temp->cfsActive = 1;
 				strcpy(temp->serviceType,serviceType);
 				printf("\nCall forwarding Service Activated to %s successfully!\n\n",temp->serviceType);
@@ -197,7 +197,7 @@ void deactivateCfss(int uId)
 			if(temp->cfsActive != 0)
 			{
 				temp->cfsActive = 0;
-				temp->cfsNumber = 0;
+				bzero(temp->cfsNumber , MAX_BUFF);
 				memset(temp->serviceType,'\0',MAX_BUFF);
 				printf("\nCall Forwarding Service Deactivated Successfully!\n\n");
 				break;
@@ -284,7 +284,7 @@ void makeCall(int uId)
 			if(temp->cfsActive == 1)
 			{
 				printf("\nCall Forwarding is Active!\n\n");
-				printf("\nCall has been forwarded to %ld with %s service\n\n ",temp->cfsNumber,temp->serviceType);
+				printf("\nCall has been forwarded to %s with %s service\n\n ",temp->cfsNumber,temp->serviceType);
 				break;
 			}
 			else

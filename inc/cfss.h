@@ -7,7 +7,7 @@
 typedef struct callForwarding
 {
 	int uId;
-	long int cfsNumber;
+	char cfsNumber[MAX_BUFF];
 	int cfsActive;
 	char serviceType[MAX_BUFF];
 	struct callForwarding *next;
@@ -19,7 +19,7 @@ void loadCfss();
 int readCfsFile(FILE *,CFSS *);
 void writeCfss();
 int writeCfsFile(FILE *,CFSS *);
-void activateCfss(int,int,char *);
+void activateCfss(int,char *,char *);
 void deactivateCfss(int);
 void unregister(int);
 void makeCall(int);

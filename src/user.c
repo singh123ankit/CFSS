@@ -140,7 +140,7 @@ void loadPDetails()
 	UD *newUser = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home1/trainee59/CFSS/data/user.dat","r");
+	fptr = fopen("/home2/trainee63/GROUP1/CFSS/data/user.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -219,7 +219,7 @@ void writePDetails()
 	FILE *fptr = NULL;
 	int retVal = 0;
 	
-	fptr = fopen("/home1/trainee59/CFSS/data/user.dat","r+");
+	fptr = fopen("/home2/trainee63/GROUP1/CFSS/data/user.dat","r+");
 	if(fptr == NULL)
 	{
 		perror("fopen");

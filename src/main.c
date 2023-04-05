@@ -22,9 +22,11 @@ int main()
 {
 	int choice = 0;
 	int flag = 1;
+	int flag1 = 1;
 	int ch = 1;
 	int uid = 0;
-	long int number = 0;
+	int temp = 0;
+	char number [MAX_BUFF]={'\0',};
 	char uName[MAX_BUFF];
 	
 	loadPDetails();/*loads user details from file and stores in the linked list */
@@ -54,8 +56,24 @@ int main()
 						switch(choice)
 						{
 							case 1:
-								printf("\nEnter Call Forwarding Number: ");
-								scanf("%ld",&number);	
+								flag1 = 1;
+								temp = 0;
+								while(flag1)
+								{
+									printf("\nEnter Call Forwarding Number: ");
+									bzero(number,MAX_BUFF);
+									scanf(" ");
+									fgets(number,MAX_BUFF,stdin);
+									number[strlen(number)-1]='\0';
+									temp=checkPhoneNumber(number);
+									if(temp!=-1)
+									{
+										flag1 = 0;
+
+									}
+									
+								}
+
 								ch=1;
 								while(ch)
 								{
