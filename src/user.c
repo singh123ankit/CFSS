@@ -40,7 +40,9 @@ UD *getPDetails()
 	char passwd[MAX_BUFF] = {'\0',};
 	char uName[MAX_BUFF] = {'\0',};
 	char gender = '\0';
-	long int pNumber = 0;
+	char pNumber[MAX_BUFF] = {'\0',};	
+
+
 
 
 	newUser = (UD *)malloc(sizeof(UD));
@@ -77,35 +79,38 @@ UD *getPDetails()
 			flag = 0;
 		}
 	}
+	printf("\nEnter User Name: ");
+	scanf(" ");
+	fgets(uName,MAX_BUFF,stdin);
+	uName[strlen(uName)-1] = '\0';
+	temp = 0;
+	flag = 1;
+	while(flag)
+	{
+		printf("\nEnter Gender(M/F): ");
+		scanf(" ");
+		scanf("%c",&gender);
+		temp=checkGender(gender);
+		if(temp!=-1)
+		{
+			flag=0;
+		}
+	}
 	flag = 1;
 	temp = 0;
 	while(flag)
 	{
-		printf("\nEnter User Name: ");
-		bzero(uName,MAX_BUFF);
+		printf("\nEnter Phone Number: ");
 		scanf(" ");
-		fgets(uName,MAX_BUFF,stdin);
-		uName[strlen(uName)-1] = '\0';
-		temp = checkUserName(uName);
-		printf("\ntesting.....");
-		if(temp == -1)
- 		{
-			printf("\nThis user name already exists!Enter again.\n\n");
-		}
-		else
+		fgets(pNumber,MAX_BUFF,stdin);
+		pNumber[strlen(pNumber)-1]='\0';
+		temp=checkPhoneNumber(pNumber);
+		if(temp != -1)
 		{
 			flag = 0;
 		}
 	}
-	/*printf("\nEnter User Name: ");
-	scanf(" ");
-	fgets(uName,MAX_BUFF,stdin);
-	uName[strlen(uName)-1] = '\0';*/
-	printf("\nEnter Gender(M/F): ");
-	scanf(" ");
-	scanf("%c",&gender);
-	printf("\nEnter Phone Number: ");
-	scanf("%ld",&pNumber);
+
 	printf("\nEnter Password: ");
 	scanf(" ");
 	fgets(passwd,MAX_BUFF,stdin);
@@ -116,7 +121,7 @@ UD *getPDetails()
 	strcpy(newUser->uName,uName);
 	strcpy(newUser->passwd,passwd);
 	newUser->gender = gender;
-	newUser->pNumber = pNumber;
+	strcpy(newUser->pNumber,pNumber);
 	newUser->next = NULL;
 	return newUser;
 }
@@ -157,7 +162,7 @@ void loadPDetails()
 			strcpy(newUser->uName,temp.uName);
 			newUser->uId = temp.uId;
 			newUser->gender = temp.gender;
-			newUser->pNumber = temp.pNumber;
+			strcpy(newUser->pNumber,temp.pNumber);
 			newUser->next = NULL;
 			headUD = newUser;
 			tailUD = newUser;
@@ -176,7 +181,7 @@ void loadPDetails()
 		strcpy(newUser->uName,temp.uName);
 		newUser->uId = temp.uId;
 		newUser->gender = temp.gender;
-		newUser->pNumber = temp.pNumber;
+		strcpy(newUser->pNumber,temp.pNumber);
 		newUser->next = NULL;
 		tailUD->next = newUser;
 		tailUD = newUser;
@@ -256,7 +261,8 @@ int writeUserFile(FILE *fptr,UD *temp)
 	return ret;
 }
 
-int checkName(char *n) {
+int checkName(char *n) 
+{
     if (n == NULL) {
         return 0;
     }
@@ -273,18 +279,33 @@ int checkName(char *n) {
     return 1;
 }
 
-int checkUserName(char *uName)
+int checkGender(char ch)
 {
-    UD *temp = headUD;
-    printf("\n%d\n",temp->uId);
+    if(ch=='M'||ch=='F'||ch=='m'||ch=='f'){
+        return 0;
 
-    while(temp!= NULL)
-    {
-        if(strcmp(temp -> uName,uName)==0)
-	  {
+    }
+
+    printf("Gender can be either M or F.\n") ;
+    return -1;
+}
+
+int checkPhoneNumber(char *phone) 
+{
+    /* to check whether phone number is 10 digits*/
+    if (strlen(phone) != 10) {
+        printf("Phone number should be of 10 digits only\n");
+        return -1;
+    }
+
+/*to check whether no other characters are present*/
+    for (int i = 0; i < strlen(phone); i++) {
+        if (!isdigit(phone[i])) {
+            printf("Phone number should not have any characters\n");
             return -1;
-	  }
-        temp=temp->next;
-    }   
+        }
+    }
+
+
     return 0;
 }

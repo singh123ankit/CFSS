@@ -9,7 +9,7 @@ typedef struct userDetails
 	char fName[MAX_BUFF];
 	char lName[MAX_BUFF];
 	char gender;
-	long int pNumber;
+	char pNumber[MAX_BUFF];
 	char uName[MAX_BUFF];
 	int uId;
 	char passwd[MAX_BUFF];
@@ -23,7 +23,8 @@ int readUserFile(FILE *,UD *);
 void writePDetails();
 int writeUserFile(FILE *,UD *);
 int checkName(char *);
-int checkUserName(char *);
+int checkGender(char);
+int checkPhoneNumber(char *);
 
 #endif
 

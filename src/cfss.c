@@ -179,7 +179,7 @@ void activateCfss(int uId,int cfsNumber,char *serviceType)
 				temp->cfsNumber = cfsNumber;
 				temp->cfsActive = 1;
 				strcpy(temp->serviceType,serviceType);
-				printf("\nCall forwarding Service Activated successfully!\n\n");
+				printf("\nCall forwarding Service Activated to %s successfully!\n\n",temp->serviceType);
 				break;
 		}
 		temp = temp->next;
@@ -284,12 +284,12 @@ void makeCall(int uId)
 			if(temp->cfsActive == 1)
 			{
 				printf("\nCall Forwarding is Active!\n\n");
-				printf("\nCall has been forwarded to %ld\n\n ",temp->cfsNumber);
+				printf("\nCall has been forwarded to %ld with %s service\n\n ",temp->cfsNumber,temp->serviceType);
 				break;
 			}
 			else
 			{
-				printf("\nNormal Call to the client\n\n");
+				printf("\nNo active call forwarding service.\nNormal Call to the client\n\n");
 				break;
 			}
 		}
