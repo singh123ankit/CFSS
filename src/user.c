@@ -13,9 +13,12 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
+#include<cfss.h>
 
-extern UD *headUD;
-extern UD *tailUD;
+UD *headUD = NULL;
+UD *tailUD = NULL;
+CFSS *headCFSS = NULL;
+CFSS *tailCFSS = NULL;
 
 
 /*******************************************************************
@@ -89,7 +92,7 @@ void loadPDetails()
 	UD *newUser = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home2/trainee63/CFSS_GROUP1/CFSS/data/user.dat","r");
+	fptr = fopen("/home1/trainee59/CFSS/data/user.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -168,7 +171,7 @@ void writePDetails()
 	FILE *fptr = NULL;
 	int retVal = 0;
 	
-	fptr = fopen("/home2/trainee63/CFSS_GROUP1/CFSS/data/user.dat","r+");
+	fptr = fopen("/home1/trainee59/CFSS/data/user.dat","r+");
 	if(fptr == NULL)
 	{
 		perror("fopen");

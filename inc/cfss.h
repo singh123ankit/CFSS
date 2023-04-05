@@ -14,10 +14,6 @@ typedef struct callForwarding
 }CFSS;
 
 
- CFSS *headCFSS = NULL;
- CFSS *tailCFSS = NULL;
-
-
 void addCfss(int);
 void loadCfss();
 int readCfsFile(FILE *,CFSS *);

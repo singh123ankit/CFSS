@@ -17,9 +17,6 @@ typedef struct userDetails
 }UD;
 
 
- UD *headUD = NULL ;
- UD *tailUD = NULL ;
-
 UD *getPDetails();
 void loadPDetails();
 int readUserFile(FILE *,UD *);

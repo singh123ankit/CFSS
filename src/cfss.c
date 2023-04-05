@@ -19,6 +19,8 @@
 
 extern CFSS *headCFSS;
 extern CFSS *tailCFSS;
+extern UD *headUD;
+extern UD *tailUD;
 
 /*******************************************************************
  * FUNCTION NAME: addCfss()
@@ -71,7 +73,7 @@ void loadCfss()
 	CFSS *newCfs = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home2/trainee63/CFSS_GROUP1/CFSS/data/cfs.dat","r");
+	fptr = fopen("/home1/trainee59/CFSS/data/cfs.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -135,7 +137,7 @@ void writeCfss()
 	FILE *fptr = NULL;
 	int retVal = 0;
 
-	fptr = fopen("/home2/trainee63/CFSS_GROUP1/CFSS/data/cfs.dat","w");
+	fptr = fopen("/home1/trainee59/CFSS/data/cfs.dat","w");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -196,7 +198,7 @@ void deactivateCfss(int uId)
 			{
 				temp->cfsActive = 0;
 				temp->cfsNumber = 0;
-				//memset(temp->serviceType,'\0',MAX_BUFF);
+				memset(temp->serviceType,'\0',MAX_BUFF);
 				printf("\nCall Forwarding Service Deactivated Successfully!\n\n");
 				break;
 			}
