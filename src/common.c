@@ -27,7 +27,8 @@
 #include<stdlib.h>
 #include<unistd.h>
 
-
+extern UD *headUD;
+extern UD *tailUD;
 /*******************************************************************
  **  FUNCTION_NAME  :   signUp
  **

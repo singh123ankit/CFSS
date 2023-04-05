@@ -10,13 +10,13 @@
 *                           HEADER FILES
 *********************************************************************************************************/
 
-#include<common.h>
-#include<cfss.h>
-#include<user.h>
 #include<string.h>
 #include<stdlib.h>
 #include<stdio.h>
 #include<unistd.h>
+#include<common.h>
+#include<cfss.h>
+#include<user.h>
 
 int main()
 {
@@ -26,7 +26,7 @@ int main()
 	int uid = 0;
 	long int number = 0;
 	char uName[MAX_BUFF];
-
+	
 	loadPDetails();/*loads user details from file and stores in the linked list */
 	loadCfss();/*loads the call fowarding screen*/
 	while(1)

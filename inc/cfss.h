@@ -14,8 +14,8 @@ typedef struct callForwarding
 }CFSS;
 
 
-extern CFSS *headCFSS;
-extern CFSS *tailCFSS;
+ CFSS *headCFSS = NULL;
+ CFSS *tailCFSS = NULL;
 
 
 void addCfss(int);

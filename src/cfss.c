@@ -17,8 +17,8 @@
 #include<stdlib.h>
 #include<string.h>
 
-CFSS *headCFSS = NULL;
-CFSS *tailCFSS = NULL;
+extern CFSS *headCFSS;
+extern CFSS *tailCFSS;
 
 /*******************************************************************
  * FUNCTION NAME: addCfss()

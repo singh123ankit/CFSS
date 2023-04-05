@@ -14,8 +14,8 @@
 #include<stdio.h>
 #include<string.h>
 
-UD *headUD = NULL;
-UD *tailUD = NULL;
+extern UD *headUD;
+extern UD *tailUD;
 
 
 /*******************************************************************

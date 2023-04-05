@@ -17,8 +17,8 @@ typedef struct userDetails
 }UD;
 
 
-extern UD *headUD ;
-extern UD *tailUD ;
+ UD *headUD = NULL ;
+ UD *tailUD = NULL ;
 
 UD *getPDetails();
 void loadPDetails();
