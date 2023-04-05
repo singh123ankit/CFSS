@@ -19,16 +19,18 @@
 *                           HEADER FILES
 *****************************************************************************/
 
-#include<common.h>
-#include<user.h>
-#include<cfss.h>
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
 #include<unistd.h>
+#include<common.h>
+#include<user.h>
+#include<cfss.h>
 
 extern UD *headUD;
 extern UD *tailUD;
+extern CFSS *headCFSS;
+extern CFSS *tailCFSS;
 /*******************************************************************
  **  FUNCTION_NAME  :   signUp
  **
@@ -243,4 +245,24 @@ void  searchUser(int uid,char *fName)
 	}
 }
 
+void freeUd()
+{
+	UD *temp = headUD;
+	while(temp != NULL)
+	{
+		temp = temp->next;
+		free(headUD);
+		headUD = temp;
+	}
+}
 
+void freeCfs()
+{
+	CFSS *temp = headCFSS;
+	while(temp != NULL)
+	{
+		temp = temp->next;
+		free(headCFSS);
+		headCFSS = temp;
+	}
+}

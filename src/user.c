@@ -9,11 +9,12 @@
 *                           HEADER FILES
 *********************************************************************************************************/
 
-#include<user.h>
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
+#include<ctype.h>
 #include<cfss.h>
+#include<user.h>
 
 UD *headUD = NULL;
 UD *tailUD = NULL;
@@ -31,6 +32,8 @@ CFSS *tailCFSS = NULL;
  *******************************************************************/
 UD *getPDetails()
 {
+	int flag = 1;
+	int temp = 0;
 	UD *newUser = NULL;
 	char fName[MAX_BUFF] = {'\0',};
 	char lName[MAX_BUFF] = {'\0',};
@@ -46,18 +49,58 @@ UD *getPDetails()
 		printf("\nMemory Allocation failed!");
 		exit(EXIT_FAILURE);
 	}
-	printf("\nEnter First Name: ");
-	scanf(" ");
-	fgets(fName,MAX_BUFF,stdin);
-	fName[strlen(fName)-1] = '\0';
-	printf("\nEnter Last Name: ");
-	scanf(" ");
-	fgets(lName,MAX_BUFF,stdin);
-	lName[strlen(lName)-1] = '\0';
-	printf("\nEnter User Name: ");
+	while(flag)
+	{
+		printf("\nEnter First Name: ");
+		bzero(fName,MAX_BUFF);
+		scanf(" ");
+		fgets(fName,MAX_BUFF,stdin);
+		fName[strlen(fName)-1] = '\0';
+		temp = checkName(fName);
+		if(temp != -1)
+ 		{
+			flag = 0;
+		}
+	}
+	temp = 0;
+	flag = 1;
+	while(flag)
+	{
+		printf("\nEnter Last Name: ");
+		bzero(lName,MAX_BUFF);
+		scanf(" ");
+		fgets(lName,MAX_BUFF,stdin);
+		lName[strlen(lName)-1] = '\0';
+		temp = checkName(lName);
+		if(temp != -1)
+		{
+			flag = 0;
+		}
+	}
+	flag = 1;
+	temp = 0;
+	while(flag)
+	{
+		printf("\nEnter User Name: ");
+		bzero(uName,MAX_BUFF);
+		scanf(" ");
+		fgets(uName,MAX_BUFF,stdin);
+		uName[strlen(uName)-1] = '\0';
+		temp = checkUserName(uName);
+		printf("\ntesting.....");
+		if(temp == -1)
+ 		{
+			printf("\nThis user name already exists!Enter again.\n\n");
+		}
+		else
+		{
+			flag = 0;
+		}
+	}
+	/*printf("\nEnter User Name: ");
 	scanf(" ");
 	fgets(uName,MAX_BUFF,stdin);
-	uName[strlen(uName)-1] = '\0';
+	uName[strlen(uName)-1] = '\0';*/
 	printf("\nEnter Gender(M/F): ");
 	scanf(" ");
 	scanf("%c",&gender);
@@ -211,4 +254,37 @@ int writeUserFile(FILE *fptr,UD *temp)
 	
 	int ret = fwrite(temp, sizeof(UD),1,fptr);
 	return ret;
+}
+
+int checkName(char *n) {
+    if (n == NULL) {
+        return 0;
+    }
+    int flag = 0;
+    for (int i = 0; i < strlen(n); i++) {
+        if (!isalpha(n[i])) {  
+            printf("Name should contain only letters,no digits or special characters allowed\n");
+            flag = 1;
+            break;
+        }
+    }
+    if (flag == 1)
+        return -1;
+    return 1;
+}
+
+int checkUserName(char *uName)
+{
+    UD *temp = headUD;
+    printf("\n%d\n",temp->uId);
+
+    while(temp!= NULL)
+    {
+        if(strcmp(temp -> uName,uName)==0)
+	  {
+            return -1;
+	  }
+        temp=temp->next;
+    }   
+    return 0;
 }

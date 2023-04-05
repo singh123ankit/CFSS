@@ -106,6 +106,8 @@ int main()
 							case 6:
 								writePDetails();
 								writeCfss();
+								freeUd();
+								freeCfs();
 								exit(0);
 							default:
 								printf("\nInvalid Choice!Try Again\n\n");
@@ -116,6 +118,8 @@ int main()
 			case 3:
 				writePDetails();
 				writeCfss();
+				freeUd();
+				freeCfs();
 				exit(0);
 			default:
 				printf("\nInvalid Choice!\n\n");

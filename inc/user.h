@@ -22,6 +22,8 @@ void loadPDetails();
 int readUserFile(FILE *,UD *);
 void writePDetails();
 int writeUserFile(FILE *,UD *);
+int checkName(char *);
+int checkUserName(char *);
 
 #endif
 
