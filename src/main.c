@@ -126,6 +126,10 @@ int main()
 								writeCfss();
 								freeUd();
 								freeCfs();
+								printf("\n\t\t*****************THANK YOU***************\n");
+								sleep(2);
+								
+								system("clear");
 								exit(0);
 							default:
 								printf("\nInvalid Choice!Try Again\n\n");
@@ -138,6 +142,10 @@ int main()
 				writeCfss();
 				freeUd();
 				freeCfs();
+				printf("\n\t\t************************THANK YOU***********************\n");
+				sleep(2);
+				
+                                system("clear");
 				exit(0);
 			default:
 				printf("\nInvalid Choice!\n\n");

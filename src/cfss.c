@@ -1,5 +1,4 @@
 
-
 /****************************************************************************************************
  * FILE NAME    : cfss.c
  *
@@ -63,7 +62,7 @@ void addCfss(int uid)
  * DESCRIPTION: This function is used to load user details from
  * 		cfs database, and adds them to the linked list.
  *
- * RETURNS      :  returns SUCCESS or FAILURE
+ * RETURNS      : void.
  *******************************************************************/
 
 void loadCfss()
@@ -131,6 +130,16 @@ int readCfsFile(FILE *fptr,CFSS *temp)
 	return ret;
 }
 
+/*******************************************************************
+ * FUNCTION NAME: writeCfssFile()
+ *
+ * DESCRIPTION: This function is used to write 
+ * 		from the linked  list  
+ * 		to the cfs.dat file.
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
+
 void writeCfss()
 {
 	CFSS *temp = headCFSS;
@@ -167,6 +176,14 @@ int writeCfsFile(FILE *fptr,CFSS *temp)
 	int ret = fwrite(temp,sizeof(CFSS),1,fptr);
 	return ret;
 }
+/*******************************************************************
+ * FUNCTION NAME:activateCfssFile()
+ *
+ * DESCRIPTION: This function is used to activate the call 
+ * 		forwarding service.
+ *
+ * RETURNS      :void-displays message 
+ *******************************************************************/
 
 void activateCfss(int uId,char *cfsNumber,char *serviceType)
 {
@@ -185,6 +202,14 @@ void activateCfss(int uId,char *cfsNumber,char *serviceType)
 		temp = temp->next;
 	}
 }
+/*******************************************************************
+ * FUNCTION NAME:activateCfssFile()
+ *
+ * DESCRIPTION: This function is used to activate the call
+ *              forwarding service.
+ *
+ * RETURNS      :  void- displays message
+ *******************************************************************/
 
 void deactivateCfss(int uId)
 {
@@ -211,6 +236,14 @@ void deactivateCfss(int uId)
 		temp=temp->next;
 	}
 }
+/*******************************************************************
+ * FUNCTION NAME:unregister()
+ *
+ * DESCRIPTION: This function is used to unregister the call
+ *              forwarding service-deletes node.
+ *
+ * RETURNS      :  void- diplays message
+ *******************************************************************/
 
 void unregister(int uId)
 {
@@ -272,6 +305,14 @@ void unregister(int uId)
 	}
 	printf("\nYou have been unregistered successfully!\n\n");
 }
+/*******************************************************************
+ * FUNCTION NAME:makeCall()
+ *
+ * DESCRIPTION: This function is used to make a call
+ *              to a provided number, and through a service.
+ *
+ * RETURNS      :  void- diplays message
+ *******************************************************************/
 
 void makeCall(int uId)
 {

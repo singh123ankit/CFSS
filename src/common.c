@@ -74,25 +74,25 @@ void signUp()
 
 int signIn()
 {
-	char uName[MAX_BUFF] = {'\0',};
+	char pNumber[MAX_BUFF] = {'\0',};
 	char passwd[MAX_BUFF] = {'\0',};
 	int uid = 0;
 
-	printf("\nEnter User Name: ");
+	printf("\nEnter phone number: ");
 	scanf(" ");
-	fgets(uName,MAX_BUFF,stdin);
-	uName[strlen(uName)-1] = '\0';
+	fgets(pNumber,MAX_BUFF,stdin);
+	pNumber[strlen(pNumber)-1] = '\0';
 	printf("\nEnter Password: ");
 	scanf(" ");
 	fgets(passwd,MAX_BUFF,stdin);
 	passwd[strlen(passwd)-1] = '\0';
-	uid = checkCred(uName,passwd);
+	uid = checkCred(pNumber,passwd);
 	if(uid > 0)
 	{
 		printf("\nLogged In Successfully!\n\n");
 		return uid;
 	}
-	printf("\nEither User Name or Password is Incorrect!Try Again.\n\n");
+	printf("\nEither Phone number or Password is Incorrect!Try Again.\n\n");
 	return -1;
 }
 
@@ -106,7 +106,7 @@ int signIn()
  **  RETURN_TYPE    :   returns success or failure
  ********************************************************************/
 
-int checkCred(char *uName,char *passwd)
+int checkCred(char *pNumber,char *passwd)
 {
 	int flag = 0;
 	int uid = 0;
@@ -115,7 +115,7 @@ int checkCred(char *uName,char *passwd)
 
 	while(temp != NULL)
 	{
-		if(strcmp(temp->uName,uName) == 0)
+		if(strcmp(temp->pNumber,pNumber) == 0)
 		{
 			flag += 1;
 			if(strcmp(temp->passwd,passwd) == 0)

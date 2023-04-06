@@ -21,7 +21,6 @@ UD *tailUD = NULL;
 CFSS *headCFSS = NULL;
 CFSS *tailCFSS = NULL;
 
-
 /*******************************************************************
  * FUNCTION NAME: getPDetails()
  *
@@ -38,12 +37,8 @@ UD *getPDetails()
 	char fName[MAX_BUFF] = {'\0',};
 	char lName[MAX_BUFF] = {'\0',};
 	char passwd[MAX_BUFF] = {'\0',};
-	char uName[MAX_BUFF] = {'\0',};
 	char gender = '\0';
 	char pNumber[MAX_BUFF] = {'\0',};	
-
-
-
 
 	newUser = (UD *)malloc(sizeof(UD));
 	if(newUser == NULL)
@@ -79,10 +74,6 @@ UD *getPDetails()
 			flag = 0;
 		}
 	}
-	printf("\nEnter User Name: ");
-	scanf(" ");
-	fgets(uName,MAX_BUFF,stdin);
-	uName[strlen(uName)-1] = '\0';
 	temp = 0;
 	flag = 1;
 	while(flag)
@@ -118,7 +109,6 @@ UD *getPDetails()
 
 	strcpy(newUser->fName,fName);
 	strcpy(newUser->lName,lName);
-	strcpy(newUser->uName,uName);
 	strcpy(newUser->passwd,passwd);
 	newUser->gender = gender;
 	strcpy(newUser->pNumber,pNumber);
@@ -131,7 +121,7 @@ UD *getPDetails()
  * DESCRIPTION: This function is used to load data from user 
  * 		database and puts in the linked list.
  *
- * RETURNS      :  returns SUCCESS or FAILURE
+ * RETURNS      :void 
  *******************************************************************/
 void loadPDetails()
 {
@@ -146,7 +136,8 @@ void loadPDetails()
 		perror("fopen()");
 		exit(EXIT_FAILURE);
 	}
-	while(readUserFile(fptr,&temp))
+
+	while(readUserFile(fptr,&temp))/*reads one data at a time, from user.dat file*/
 	{
 		if(flag == 0)
 		{
@@ -159,7 +150,6 @@ void loadPDetails()
 			strcpy(newUser->fName,temp.fName);
 			strcpy(newUser->lName,temp.lName);
 			strcpy(newUser->passwd,temp.passwd);
-			strcpy(newUser->uName,temp.uName);
 			newUser->uId = temp.uId;
 			newUser->gender = temp.gender;
 			strcpy(newUser->pNumber,temp.pNumber);
@@ -178,7 +168,6 @@ void loadPDetails()
 		strcpy(newUser->fName,temp.fName);
 		strcpy(newUser->lName,temp.lName);
 		strcpy(newUser->passwd,temp.passwd);
-		strcpy(newUser->uName,temp.uName);
 		newUser->uId = temp.uId;
 		newUser->gender = temp.gender;
 		strcpy(newUser->pNumber,temp.pNumber);
@@ -292,11 +281,8 @@ int checkGender(char ch)
 
 int checkPhoneNumber(char *phone) 
 {
-    /* to check whether phone number is 10 digits*/
-    if (strlen(phone) != 10) {
-        printf("Phone number should be of 10 digits only\n");
-        return -1;
-    }
+	UD *temp=NULL;
+	temp = headUD;
 
 /*to check whether no other characters are present*/
     for (int i = 0; i < strlen(phone); i++) {
@@ -306,6 +292,22 @@ int checkPhoneNumber(char *phone)
         }
     }
 
+    /* to check whether phone number is 10 digits*/
+    if (strlen(phone) != 10) {
+        printf("Phone number should be of 10 digits only\n");
+        return -1;
+    
+    }
+    while(temp!=NULL)
+    {
+	    if (strcmp(temp->pNumber , phone)==0)
+	    {
+		    printf("Phone number already exists\n");
+		    return -1;
+	    }
+	   temp = temp->next;
 
+    }
     return 0;
 }
+
