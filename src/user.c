@@ -39,6 +39,7 @@ UD *getPDetails()
 	char passwd[MAX_BUFF] = {'\0',};
 	char gender = '\0';
 	char pNumber[MAX_BUFF] = {'\0',};	
+	int choice = 0;
 
 	newUser = (UD *)malloc(sizeof(UD));
 	if(newUser == NULL)
@@ -96,9 +97,20 @@ UD *getPDetails()
 		fgets(pNumber,MAX_BUFF,stdin);
 		pNumber[strlen(pNumber)-1]='\0';
 		temp=checkPhoneNumber(pNumber);
-		if(temp != -1)
+		if(temp == 0)
 		{
 			flag = 0;
+		}
+		else if(temp == -2)
+		{
+			printf("\nDo you want to continue?Press 1 to continue or 0 to SignIn: ");
+			scanf("%d",&choice);
+			if(choice == 1)
+			{}
+			else
+			{
+				return NULL;
+			}
 		}
 	}
 
@@ -130,7 +142,7 @@ void loadPDetails()
 	UD *newUser = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home2/trainee63/GROUP1/CFSS/data/user.dat","r");
+	fptr = fopen("/home1/trainee59/project/CFSS/data/user.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -208,7 +220,7 @@ void writePDetails()
 	FILE *fptr = NULL;
 	int retVal = 0;
 	
-	fptr = fopen("/home2/trainee63/GROUP1/CFSS/data/user.dat","r+");
+	fptr = fopen("/home1/trainee59/project/CFSS/data/user.dat","r+");
 	if(fptr == NULL)
 	{
 		perror("fopen");
@@ -282,21 +294,23 @@ int checkGender(char ch)
 int checkValidPhone(char *phone_number)
 {
 	int i=0;
+
 	/*to check whether no other characters are present*/
     	for (i = 0; i < strlen(phone_number); i++) {
-        	if (!isdigit(phone_number[i])) {
+        	if (!isdigit(phone_number[i])) 
+		{
             		printf("Phone number should not have any characters\n");
            		 return -1;
         	}
     	}
 
    	 /* to check whether phone number is 10 digits*/
-   	 if (strlen(phone_number) != 10) {
+   	if (strlen(phone_number) != 10) 
+	{
         	printf("Phone number should be of 10 digits only\n");
-       		 return -1;
-
-   	 }
-	 return 0;
+		return -1;
+   	}
+	return 0;
 }	 
 
 int  checkPhoneNumber(char *phone) 
@@ -318,7 +332,7 @@ int  checkPhoneNumber(char *phone)
 	if (strcmp(temp->pNumber , phone)==0)
     	{
 	    printf("Phone number already exists\n");
-	    return -1;
+	    return -2;
     	}
    	temp = temp->next;
     }   

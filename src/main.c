@@ -34,125 +34,124 @@ int main()
 	loadCfss();/* This function is used to load user details from cfs database, and adds them to the linked list.*/
 	while(1)
 	{
-		switch(initialScreen())
-		{
-			case 1:
-				signUp();
-				sleep(2);
-				break;
-			case 2:
-				uid = signIn();
-				sleep(2);
-				if(uid == -1)
-				{
-					continue;
-				}
-				else
-				{
-					searchUser(uid,uName);
-					searchPhoneNumber(uid,pNumber);
-					flag = 1;
-					while(flag)
+			switch(initialScreen())
+			{
+				case 1:
+					signUp();
+					sleep(2);
+					break;
+				case 2:
+					uid = signIn();
+					sleep(2);
+					if(uid == -1)
 					{
-						choice = mainScreen(uName);
-						switch(choice)
+						continue;
+					}
+					else
+					{
+						searchUser(uid,uName);
+						searchPhoneNumber(uid,pNumber);
+						flag = 1;
+						while(flag)
 						{
-							case 1:
-								flag1 = 1;
-								temp = 0;
-								while(flag1)
-								{
-									printf("\nEnter Call Forwarding Number: ");
-									bzero(number,MAX_BUFF);
-									scanf(" ");
-									fgets(number,MAX_BUFF,stdin);
-									number[strlen(number)-1]='\0';
-									temp=checkSamePNumber(pNumber,number);
-									if(temp!=-1)
+							choice = mainScreen(uName);
+							switch(choice)
+							{
+								case 1:
+									flag1 = 1;
+									temp = 0;
+									while(flag1)
 									{
-										flag1 = 0;
+										printf("\nEnter Call Forwarding Number: ");
+										bzero(number,MAX_BUFF);
+										scanf(" ");
+										fgets(number,MAX_BUFF,stdin);
+										number[strlen(number)-1]='\0';
+										temp=checkSamePNumber(pNumber,number);
+										if(temp!=-1)
+										{
+											flag1 = 0;
 
-									}
+										}
 									
-								}
+									}
 
-								ch=1;
-								while(ch)
-								{
-									choice = cfsScreen();
-									if(choice == 1)
+									ch=1;
+									while(ch)
 									{
+										choice = cfsScreen();
+										if(choice == 1)
+										{
 										
-										activateCfss(uid,number,"Unconditional");
-										ch = 0;
+											activateCfss(uid,number,"Unconditional");
+											ch = 0;
+										}
+										else if(choice == 2)
+										{
+											activateCfss(uid,number,"No Reply");
+											ch = 0;
+										}
+										else if(choice == 3)
+										{
+											activateCfss(uid,number,"Busy");
+											ch = 0;
+										}
+										else
+										{
+											printf("\nEnter correct choice!");
+										}
 									}
-									else if(choice == 2)
-									{
-										activateCfss(uid,number,"No Reply");
-										ch = 0;
-									}
-									else if(choice == 3)
-									{
-										activateCfss(uid,number,"Busy");
-										ch = 0;
-									}
-									else
-									{
-										printf("\nEnter correct choice!");
-									}
-								}
-								sleep(2);
-								break;
-							case 2:
-								deactivateCfss(uid);
-								sleep(5);
-								break;
-							case 3:
-								unregister(uid);
-								sleep(2);
-								uid = 0;
-								flag = 0;
-								break;
-							case 4:
-								makeCall(uid);
-								sleep(2);
-								break;
-							case 5:
-								uid = 0;
-								flag = 0;
-								printf("\nLogged Out Successfully!\n\n");
-								sleep(2);
-								break;
-							case 6:
-								writePDetails();
-								writeCfss();
-								freeUd();
-								freeCfs();
-								printf("\n\t\t*****************THANK YOU***************\n");
-								sleep(2);
+									sleep(2);
+									break;
+								case 2:
+									deactivateCfss(uid);
+									sleep(5);
+									break;
+								case 3:
+									unregister(uid);
+									sleep(2);
+									uid = 0;
+									flag = 0;
+									break;
+								case 4:
+									makeCall(uid);
+									sleep(2);
+									break;
+								case 5:
+									uid = 0;
+									flag = 0;
+									printf("\nLogged Out Successfully!\n\n");
+									sleep(2);
+									break;
+								case 6:
+									writePDetails();
+									writeCfss();
+									freeUd();
+									freeCfs();
+									printf("\n\t\t*****************THANK YOU***************\n");
+									sleep(2);
 								
-								system("clear");
-								exit(0);
-							default:
-								printf("\nInvalid Choice!Try Again\n\n");
+									system("clear");
+									exit(0);
+								default:
+									printf("\nInvalid Choice!Try Again\n\n");
+							}
 						}
 					}
-				}
-				break;
-			case 3:
-				writePDetails();
-				writeCfss();
-				freeUd();
-				freeCfs();
-				printf("\n\t\t************************THANK YOU***********************\n");
-				sleep(2);
-				
-                                system("clear");
-				exit(0);
-			default:
-				printf("\nInvalid Choice!\n\n");
+					break;
+				case 3:
+					writePDetails();
+					writeCfss();
+					freeUd();
+					freeCfs();
+					printf("\n\t\t************************THANK YOU***********************\n");
+					sleep(2);
+                                	system("clear");
+					exit(0);
+				default:
+					printf("\nInvalid Choice!\n\n");
+			}
 		}
-	}
 	return 0;
 }
 

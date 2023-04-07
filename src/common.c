@@ -38,20 +38,27 @@ void signUp()
 	UD *newUser = NULL;
 
 	newUser = getPDetails();
-	if(headUD == NULL)
+	if(newUser == NULL)
 	{
-		newUser->uId = 1;
-		headUD = newUser;
-		tailUD = newUser;
+		return;
 	}
 	else
 	{
-		newUser->uId = (tailUD->uId) + 1;
-		tailUD->next = newUser;
-		tailUD = newUser;
+		if(headUD == NULL)
+		{
+			newUser->uId = 1;
+			headUD = newUser;
+			tailUD = newUser;
+		}
+		else
+		{
+			newUser->uId = (tailUD->uId) + 1;
+			tailUD->next = newUser;
+			tailUD = newUser;
+		}
+		addCfss(newUser->uId);
+		printf("\nYou have been registered successfully!\n\n");
 	}
-	addCfss(newUser->uId);
-	printf("\nYou have been registered successfully!\n\n");
 }
 
 /**********************************************************************

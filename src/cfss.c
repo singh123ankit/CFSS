@@ -72,7 +72,7 @@ void loadCfss()
 	CFSS *newCfs = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home2/trainee63/GROUP1/CFSS/data/cfs.dat","r");
+	fptr = fopen("/home1/trainee59/project/CFSS/data/cfs.dat","r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -146,7 +146,7 @@ void writeCfss()
 	FILE *fptr = NULL;
 	int retVal = 0;
 
-	fptr = fopen("/home2/trainee63/GROUP1/CFSS/data/cfs.dat","w");
+	fptr = fopen("/home1/trainee59/project/CFSS/data/cfs.dat","w");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
