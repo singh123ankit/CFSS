@@ -4,13 +4,6 @@
  * DESCRIPTION  : This file contails function definition required to perform call forwarding services
  *                
  *
- * Revision History:
- *
- * DATE         NAME                REFERENCE          REASON
- ********************************************************************************************************
- * 04-04-2023    GROUP 01                New           Changes Committed
- *********************************************************************************************************
- * Copyright 2023, Altran Group All Rights Reserved
  *
  *******************************************************************************************************/
 
@@ -150,7 +143,7 @@ int checkCred(char *pNumber,char *passwd)
 
 int initialScreen()
 {
-	int choice = 0;
+	int choice =0;
 
 	system("clear");
 	printf("*******************Welcome To Call Forwarding System Simulator*********************");
@@ -244,6 +237,23 @@ void  searchUser(int uid,char *fName)
 		temp = temp->next;
 	}
 }
+
+void  searchPhoneNumber(int uid,char *pNumber)
+{
+        UD *temp = headUD;
+
+        while(temp != NULL)
+        {
+                if(temp->uId == uid)
+                {
+                        strcpy(pNumber,temp->pNumber);
+                        break;
+                }
+                temp = temp->next;
+        }
+}
+
+
 
 void freeUd()
 {

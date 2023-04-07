@@ -25,6 +25,7 @@ int writeUserFile(FILE *,UD *);
 int checkName(char *);
 int checkGender(char);
 int checkPhoneNumber(char *);
+int checkSamePNumber(char *, char *);
 
 #endif
 

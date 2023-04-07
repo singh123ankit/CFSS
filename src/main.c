@@ -28,9 +28,10 @@ int main()
 	int temp = 0;
 	char number [MAX_BUFF]={'\0',};
 	char uName[MAX_BUFF];
+	char pNumber [MAX_BUFF] = {'\0',};
 	
 	loadPDetails();/*loads user details from file and stores in the linked list */
-	loadCfss();/*loads the call fowarding screen*/
+	loadCfss();/* This function is used to load user details from cfs database, and adds them to the linked list.*/
 	while(1)
 	{
 		switch(initialScreen())
@@ -49,6 +50,7 @@ int main()
 				else
 				{
 					searchUser(uid,uName);
+					searchPhoneNumber(uid,pNumber);
 					flag = 1;
 					while(flag)
 					{
@@ -65,7 +67,7 @@ int main()
 									scanf(" ");
 									fgets(number,MAX_BUFF,stdin);
 									number[strlen(number)-1]='\0';
-									temp=checkPhoneNumber(number);
+									temp=checkSamePNumber(pNumber,number);
 									if(temp!=-1)
 									{
 										flag1 = 0;

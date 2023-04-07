@@ -279,13 +279,14 @@ int checkGender(char ch)
     return -1;
 }
 
-int checkPhoneNumber(char *phone) 
+int  checkPhoneNumber(char *phone) 
 {
 	UD *temp=NULL;
 	temp = headUD;
-
+	
+	int i=0;
 /*to check whether no other characters are present*/
-    for (int i = 0; i < strlen(phone); i++) {
+    for (i = 0; i < strlen(phone); i++) {
         if (!isdigit(phone[i])) {
             printf("Phone number should not have any characters\n");
             return -1;
@@ -298,16 +299,45 @@ int checkPhoneNumber(char *phone)
         return -1;
     
     }
+
+    
     while(temp!=NULL)
     {
-	    if (strcmp(temp->pNumber , phone)==0)
-	    {
-		    printf("Phone number already exists\n");
-		    return -1;
-	    }
-	   temp = temp->next;
+	if (strcmp(temp->pNumber , phone)==0)
+    	{
+	    printf("Phone number already exists\n");
+	    return -1;
+    	}
+   	temp = temp->next;
+    }   
+	    return 0;
+    
+}
+int checkSamePNumber(char *pNumber, char *number)
+{	
+    int i=0;
+    
+    /*to check whether no other characters are present*/
+    for (i = 0; i < strlen(number); i++) {
+        if (!isdigit(number[i])) {
+            printf("Phone number should not have any characters\n");
+            return -1;
+        }
+    }
+
+    /* to check whether phone number is 10 digits*/
+    if (strlen(number) != 10) {
+        printf("Phone number should be of 10 digits only\n");
+        return -1;
 
     }
+
+    if(strcmp(pNumber,number)==0)
+    {
+	    printf("\n\n Call Forward to own number cannot be done!\n "); 
+	    return -1;
+    }
+
     return 0;
 }
 

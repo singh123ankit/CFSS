@@ -9,6 +9,7 @@ int initialScreen();
 int mainScreen(char *);
 int cfsScreen();
 void searchUser(int,char *);
+void searchPhoneNumber(int, char *);
 void freeUd();
 void freeCfs();
 
