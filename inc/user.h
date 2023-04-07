@@ -26,6 +26,7 @@ int checkName(char *);
 int checkGender(char);
 int checkPhoneNumber(char *);
 int checkSamePNumber(char *, char *);
+int checkValidPhone(char *phone_number);
 
 #endif
 

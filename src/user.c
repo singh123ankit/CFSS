@@ -279,26 +279,38 @@ int checkGender(char ch)
     return -1;
 }
 
+int checkValidPhone(char *phone_number)
+{
+	int i=0;
+	/*to check whether no other characters are present*/
+    	for (i = 0; i < strlen(phone_number); i++) {
+        	if (!isdigit(phone_number[i])) {
+            		printf("Phone number should not have any characters\n");
+           		 return -1;
+        	}
+    	}
+
+   	 /* to check whether phone number is 10 digits*/
+   	 if (strlen(phone_number) != 10) {
+        	printf("Phone number should be of 10 digits only\n");
+       		 return -1;
+
+   	 }
+	 return 0;
+}	 
+
 int  checkPhoneNumber(char *phone) 
 {
 	UD *temp=NULL;
 	temp = headUD;
-	
-	int i=0;
-/*to check whether no other characters are present*/
-    for (i = 0; i < strlen(phone); i++) {
-        if (!isdigit(phone[i])) {
-            printf("Phone number should not have any characters\n");
-            return -1;
-        }
-    }
+	int check = 0;
 
-    /* to check whether phone number is 10 digits*/
-    if (strlen(phone) != 10) {
-        printf("Phone number should be of 10 digits only\n");
-        return -1;
-    
-    }
+	check=checkValidPhone(phone);
+	if(check == -1)
+	{
+		return -1;
+	}
+	
 
     
     while(temp!=NULL)
@@ -315,21 +327,14 @@ int  checkPhoneNumber(char *phone)
 }
 int checkSamePNumber(char *pNumber, char *number)
 {	
-    int i=0;
     
-    /*to check whether no other characters are present*/
-    for (i = 0; i < strlen(number); i++) {
-        if (!isdigit(number[i])) {
-            printf("Phone number should not have any characters\n");
-            return -1;
-        }
-    }
+    int check = 0;
 
-    /* to check whether phone number is 10 digits*/
-    if (strlen(number) != 10) {
-        printf("Phone number should be of 10 digits only\n");
-        return -1;
+    check = checkValidPhone(number);
 
+    if(check == -1)
+    {
+	    return  -1;
     }
 
     if(strcmp(pNumber,number)==0)
