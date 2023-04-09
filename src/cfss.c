@@ -206,9 +206,9 @@ void activateCfss(int uId,char *cfsNumber,char *serviceType)
 	}
 }
 /*******************************************************************
- * FUNCTION NAME:activateCfssFile()
+ * FUNCTION NAME:deactivateCfss()
  *
- * DESCRIPTION: This function is used to activate the call
+ * DESCRIPTION: This function is used to deactivate the call
  *              forwarding service.
  *
  * RETURNS      :  void- displays message

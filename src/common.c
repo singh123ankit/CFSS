@@ -71,7 +71,7 @@ void signUp()
 /**********************************************************************
  **  FUNCTION_NAME  :   signIn
  **
- **  DESCRIPTION    :   This function takes user name and password
+ **  DESCRIPTION    :   This function takes phone number  and password
  			and if credentials match, the user logs in 
 			to the system.
                         
