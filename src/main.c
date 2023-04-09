@@ -17,6 +17,7 @@
 #include<common.h>
 #include<cfss.h>
 #include<user.h>
+#include<log.h>
 
 int main()
 {
@@ -29,18 +30,23 @@ int main()
 	char number [MAX_BUFF]={'\0',};
 	char uName[MAX_BUFF];
 	char pNumber [MAX_BUFF] = {'\0',};
-	
+	log_set_quiet(false);
+	log_set_level(LOG_TRACE);	
+
 	loadPDetails();/*loads user details from file and stores in the linked list */
 	loadCfss();/* This function is used to load user details from cfs database, and adds them to the linked list.*/
 	while(1)
 	{
+	//		log_trace("Software has been started");
 			switch(initialScreen())
 			{
 				case 1:
+					log_info("\n****SIGN UP****\n");
 					signUp();
 					sleep(2);
 					break;
 				case 2:
+					log_info("\n****SIGN IN****\n");
 					uid = signIn();
 					sleep(2);
 					if(uid == -1)
@@ -82,7 +88,7 @@ int main()
 										choice = cfsScreen();
 										if(choice == 1)
 										{
-										
+									
 											activateCfss(uid,number,"Unconditional");
 											ch = 0;
 										}
@@ -104,18 +110,20 @@ int main()
 									sleep(2);
 									break;
 								case 2:
+									log_info("\n****DEACTIVATING SERVICE****\n");
 									deactivateCfss(uid);
 									sleep(5);
 									break;
 								case 3:
+									log_info("\n****UNREGISTERING SERVICE****\n");
 									unregister(uid);
-									sleep(2);
+									sleep(3);
 									uid = 0;
 									flag = 0;
 									break;
 								case 4:
 									makeCall(uid);
-									sleep(2);
+									sleep(4);
 									break;
 								case 5:
 									uid = 0;
@@ -134,7 +142,10 @@ int main()
 									system("clear");
 									exit(0);
 								default:
-									printf("\nInvalid Choice!Try Again\n\n");
+									log_warn("\nInvalid Choice!Try Again\n\n");
+									sleep(2);
+									break;
+
 							}
 						}
 					}
@@ -149,7 +160,9 @@ int main()
                                 	system("clear");
 					exit(0);
 				default:
-					printf("\nInvalid Choice!\n\n");
+					log_warn("\nInvalid Choice!\n\n");
+					sleep(2);
+					break;
 			}
 		}
 	return 0;

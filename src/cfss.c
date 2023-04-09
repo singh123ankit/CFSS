@@ -15,6 +15,9 @@
 #include<string.h>
 #include<user.h>
 #include<cfss.h>
+#include<log.h>
+
+#define PATH "/home2/trainee63/GROUP1/CFSS/data/cfs.dat"
 
 extern CFSS *headCFSS;
 extern CFSS *tailCFSS;
@@ -72,7 +75,7 @@ void loadCfss()
 	CFSS *newCfs = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home1/trainee59/project/CFSS/data/cfs.dat","r");
+	fptr = fopen(PATH,"r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -146,7 +149,7 @@ void writeCfss()
 	FILE *fptr = NULL;
 	int retVal = 0;
 
-	fptr = fopen("/home1/trainee59/project/CFSS/data/cfs.dat","w");
+	fptr = fopen(PATH,"w");
 	if(fptr == NULL)
 	{
 		perror("fopen()");

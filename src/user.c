@@ -15,6 +15,11 @@
 #include<ctype.h>
 #include<cfss.h>
 #include<user.h>
+#include<log.h>
+
+/*PATH variable is taken as a macro*/
+
+#define PATH "/home2/trainee63/GROUP1/CFSS/data/user.dat" 
 
 UD *headUD = NULL;
 UD *tailUD = NULL;
@@ -103,7 +108,7 @@ UD *getPDetails()
 		}
 		else if(temp == -2)
 		{
-			printf("\nDo you want to continue?Press 1 to continue or 0 to SignIn: ");
+			printf("\nDo you want to continue?\nPress 1 to continue or 0 to SignIn: ");
 			scanf("%d",&choice);
 			if(choice == 1)
 			{}
@@ -142,7 +147,7 @@ void loadPDetails()
 	UD *newUser = NULL;
 	int flag = 0;
 
-	fptr = fopen("/home1/trainee59/project/CFSS/data/user.dat","r");
+	fptr = fopen(PATH,"r");
 	if(fptr == NULL)
 	{
 		perror("fopen()");
@@ -211,7 +216,7 @@ int readUserFile(FILE *fptr, UD *temp)
  * DESCRIPTION: This function is used to write user details to user 
  * 		database.
  *
- * RETURNS      :  returns SUCCESS or FAILURE
+ * RETURNS      : void return type
  *******************************************************************/
 
 void writePDetails()
@@ -220,7 +225,7 @@ void writePDetails()
 	FILE *fptr = NULL;
 	int retVal = 0;
 	
-	fptr = fopen("/home1/trainee59/project/CFSS/data/user.dat","r+");
+	fptr = fopen(PATH,"r+");
 	if(fptr == NULL)
 	{
 		perror("fopen");
@@ -261,35 +266,62 @@ int writeUserFile(FILE *fptr,UD *temp)
 	int ret = fwrite(temp, sizeof(UD),1,fptr);
 	return ret;
 }
+/*******************************************************************
+ * FUNCTION NAME: checkName()
+ *
+ * DESCRIPTION: This function is used to validate name. It checks 
+ * 		whether name contains only alphabets. 
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
 
 int checkName(char *n) 
 {
-    if (n == NULL) {
-        return 0;
-    }
-    int flag = 0;
-    for (int i = 0; i < strlen(n); i++) {
-        if (!isalpha(n[i])) {  
-            printf("Name should contain only letters,no digits or special characters allowed\n");
-            flag = 1;
-            break;
-        }
-    }
-    if (flag == 1)
-        return -1;
-    return 1;
+	int i=0;
+   	if (n == NULL) {
+        	return 0;
+   	 }
+  	 int flag = 0;
+   	 for (i = 0; i < strlen(n); i++) {
+       	 	if (!isalpha(n[i])) {  
+           	 printf("Name should contain only letters,no digits or special characters allowed\n");
+            	flag = 1;
+            	break;
+        	}
+    	}
+    	if (flag == 1)
+        	return -1;
+    	return 1;
 }
+/*******************************************************************
+ * FUNCTION NAME: checkGender()
+ *
+ * DESCRIPTION: This function is used to validate gender. 
+ * 		It checks whether gender is either M or F.
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
 
 int checkGender(char ch)
 {
-    if(ch=='M'||ch=='F'||ch=='m'||ch=='f'){
-        return 0;
+	if(ch=='M'||ch=='F'||ch=='m'||ch=='f'){
+		return 0;
 
-    }
+    	}
 
-    printf("Gender can be either M or F.\n") ;
-    return -1;
+   	 printf("Gender can be either M or F.\n") ;
+   	 return -1;
 }
+/*******************************************************************
+ * FUNCTION NAME: checkValidPhone()
+ *
+ * DESCRIPTION: This function is used to validate phone number.
+ * 		It checks whether phone number contains only 
+ * 		digits.
+ *              
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
 
 int checkValidPhone(char *phone_number)
 {
@@ -312,6 +344,15 @@ int checkValidPhone(char *phone_number)
    	}
 	return 0;
 }	 
+
+/*******************************************************************
+ * FUNCTION NAME: checkPhoneNumber()
+ *
+ * DESCRIPTION: This function is used to check whether phone number 
+ * 		is already present in the database or not.
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
 
 int  checkPhoneNumber(char *phone) 
 {
@@ -339,6 +380,17 @@ int  checkPhoneNumber(char *phone)
 	    return 0;
     
 }
+
+/*******************************************************************
+ * FUNCTION NAME: checkSamePNumber()
+ *
+ * DESCRIPTION: This function is used to check whether user is calling
+ * 		himself or not.
+ *
+ * RETURNS      :  returns SUCCESS or FAILURE
+ *******************************************************************/
+
+
 int checkSamePNumber(char *pNumber, char *number)
 {	
     
@@ -353,7 +405,7 @@ int checkSamePNumber(char *pNumber, char *number)
 
     if(strcmp(pNumber,number)==0)
     {
-	    printf("\n\n Call Forward to own number cannot be done!\n "); 
+	    printf("\n\nCall Forward to own number cannot be done!\n "); 
 	    return -1;
     }
 
