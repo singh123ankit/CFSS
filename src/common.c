@@ -19,7 +19,6 @@
 #include<common.h>
 #include<user.h>
 #include<cfss.h>
-#include<log.h>
 
 
 /***************************************************************************
@@ -99,7 +98,6 @@ int signIn()
 		printf("\nLogged In Successfully!\n\n");
 		return uid;
 	}
-	log_info("\n****LOGIN FAILED****\n");
 	printf("\nEither Phone number or Password is Incorrect!Try Again.\n\n");
 	return -1;
 }
@@ -160,12 +158,7 @@ int initialScreen()
 {
 	int choice =0;
 	
-	log_set_quiet(false);
-        log_set_level(LOG_TRACE);
-
 	system("clear");
-	log_trace("\n\nSoftware has been started");
-
 	printf("*******************Welcome To Call Forwarding System Simulator*********************");
 	printf("\n\n");
 	printf("Press,");

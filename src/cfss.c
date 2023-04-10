@@ -15,7 +15,6 @@
 #include<string.h>
 #include<user.h>
 #include<cfss.h>
-#include<log.h>
 
 #define PATH "/home2/trainee63/GROUP1/CFSS/data/cfs.dat"
 

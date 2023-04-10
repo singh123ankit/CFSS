@@ -1,4 +1,4 @@
-CC = gcc -DLOG_USE_COLOR 
+CC = gcc 
 CFLAGS = -Wall -c -g
 LDFLAGS = -o
 
@@ -11,8 +11,8 @@ IFLAGS = -I $(INC)
 
 all: CFSS
 
-CFSS: $(OBJ)/main.o $(OBJ)/common.o $(OBJ)/user.o $(OBJ)/cfss.o $(OBJ)/log.o
-	$(CC) $(LDFLAGS) $(BIN)/CFSS $(OBJ)/main.o $(OBJ)/common.o $(OBJ)/user.o $(OBJ)/cfss.o $(OBJ)/log.o
+CFSS: $(OBJ)/main.o $(OBJ)/common.o $(OBJ)/user.o $(OBJ)/cfss.o 
+	$(CC) $(LDFLAGS) $(BIN)/CFSS $(OBJ)/main.o $(OBJ)/common.o $(OBJ)/user.o $(OBJ)/cfss.o 
 
 $(OBJ)/main.o: $(SRC)/main.c
 	$(CC) $(CFLAGS) $(SRC)/main.c $(IFLAGS)
@@ -29,10 +29,6 @@ $(OBJ)/user.o: $(SRC)/user.c
 $(OBJ)/cfss.o: $(SRC)/cfss.c
 	$(CC) $(CFLAGS) $(SRC)/cfss.c $(IFLAGS)
 	mv cfss.o $(OBJ)/
-
-$(OBJ)/log.o: $(SRC)/log.c
-	$(CC) $(CFLAGS) $(SRC)/log.c $(IFLAGS)
-	mv log.o $(OBJ)/
 
 clean:
 	rm -f $(OBJ)/*

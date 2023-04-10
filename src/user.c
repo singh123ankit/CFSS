@@ -15,7 +15,6 @@
 #include<ctype.h>
 #include<cfss.h>
 #include<user.h>
-#include<log.h>
 
 /*PATH variable is taken as a macro*/
 
